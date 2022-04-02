@@ -1,0 +1,90 @@
+:root {
+  --rotateSpeed: 20s;
+  --bounceSpeed: 1.5s;
+}
+
+body {
+  perspective: 35em;
+  perspective-origin: 50% calc(50% - 12em);
+  padding: 0;
+  margin: 0;
+  background-color: #000;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: sceneRotate var(--rotateSpeed) infinite linear;
+}
+@keyframes sceneRotate {
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.galaxy {
+  position: absolute;
+  transform: translate(-50%, -50%) translateZ(3.2em) rotateX(90deg);
+  top: 5em;
+  width: 55em;
+  height: 55em;
+  background-image: radial-gradient(circle at center, #0040, #000 55%), url("../images/galaxy_funnel.png");
+  background-repeat: no-repeat;
+  background-size: 100%, 100%;
+}
+
+.planet-green {
+  animation: planetShadow var(--rotateSpeed) infinite ease-out, sceneRotate var(--rotateSpeed) infinite linear reverse;
+  position: absolute;
+  left: -10em;
+  bottom: 5em;
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  background: #0e43d4;
+  background-image: radial-gradient(circle at bottom, #1c92048c, 45%, #000), url("../images/planet_green.png");
+  background-position: top right;
+}
+@keyframes planetShadow {
+  5%, 15%, 20%, 32% {
+    transform: radial-gradient(circle at bottom, #1b9204, 45%, #000);
+    opacity: 0.2;
+  }
+  0%, 60%, 95% {
+    transform: radial-gradient(circle at bottom, #1b9204, 85%, #000);
+    opacity: 1;
+    animation-timing-function: ease-in;
+  }
+}
+
+.planet-blue {
+  animation: planetShadow var(--rotateSpeed) infinite ease-out, sceneRotate var(--rotateSpeed) infinite linear reverse;
+  position: absolute;
+  left: -15em;
+  right: 5em;
+  bottom: 12em;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background: #0e43d4;
+  background-image: radial-gradient(circle at bottom, #ff88008c, 45%, #000), url("../images/planet_blue.png");
+  background-position: center;
+}
+@keyframes planetShadow {
+  15%, 20%, 32% {
+    transform: radial-gradient(circle at bottom, #ff8800, 45%, #000);
+    opacity: 0.2;
+  }
+  0%, 60%, 95% {
+    transform: radial-gradient(circle at bottom, #ff8800, 85%, #000);
+    opacity: 1;
+    animation-timing-function: ease-in;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
